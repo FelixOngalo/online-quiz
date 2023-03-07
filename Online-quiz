@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+
+class QuizQuestion
+{
+    public string Question { get; set; }
+    public List<string> Options { get; set; }
+    public int CorrectAnswer { get; set; }
+}
+
+class Quiz
+{
+    static void Main()
+    {
+        // Define the quiz questions
+        List<QuizQuestion> questions = new List<QuizQuestion>()
+        {
+            new QuizQuestion()
+            {
+                Question = "What is the capital of France?",
+                Options = new List<string>() { "Madrid", "Paris", "Berlin", "Rome" },
+                CorrectAnswer = 1
+            },
+            new QuizQuestion()
+            {
+                Question = "What is the largest planet in our solar system?",
+                Options = new List<string>() { "Earth", "Jupiter", "Saturn", "Mars" },
+                CorrectAnswer = 1
+            },
+            new QuizQuestion()
+            {
+                Question = "Who painted the Mona Lisa?",
+                Options = new List<string>() { "Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Rembrandt" },
+                CorrectAnswer = 2
+            }
+        };
+
+        // Display the quiz questions and get user answers
+        int numCorrect = 0;
+        foreach (QuizQuestion question in questions)
+        {
+            Console.WriteLine(question.Question);
+            for (int i = 0; i < question.Options.Count; i++)
+            {
+                Console.WriteLine($"{i+1}. {question.Options[i]}");
+            }
+            Console.Write("Enter your answer (1-4): ");
+            int userAnswer = int.Parse(Console.ReadLine());
+            if (userAnswer == question.CorrectAnswer)
+            {
+                Console.WriteLine("Correct!");
+                numCorrect++;
+            }
+            else
+            {
+                Console.WriteLine("Incorrect.");
+            }
+        }
+
+        // Display the user's score
+        Console.WriteLine($"You got {numCorrect} out of {questions.Count} questions correct.");
+    }
+}
